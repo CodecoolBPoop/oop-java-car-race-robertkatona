@@ -1,10 +1,10 @@
 package com.codecool;
 
-public class motorcycle extends Vehicle {
+public class Motorcycle extends Vehicle {
 
     private String name;
 
-    public motorcycle(double distanceTraveled, double moveForAnHour, String name) {
+    public Motorcycle(double distanceTraveled, double moveForAnHour, String name) {
         super(distanceTraveled, moveForAnHour);
         this.name = name;
     }
