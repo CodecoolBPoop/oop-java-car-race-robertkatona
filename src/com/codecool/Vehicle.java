@@ -2,18 +2,12 @@ package com.codecool;
 
 public class Vehicle {
 
-    private String name;
     private double distanceTraveled;
     private double moveForAnHour;
 
-    public Vehicle(String name, double distanceTraveled, double moveForAnHour) {
-        this.name = name;
+    public Vehicle(double distanceTraveled, double moveForAnHour) {
         this.distanceTraveled = distanceTraveled;
         this.moveForAnHour = moveForAnHour;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public double getDistanceTraveled() {
