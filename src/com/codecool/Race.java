@@ -4,12 +4,11 @@ public class Race {
 
     public static void main(String[] args) {
 
-        Vehicle vehicleOne = new Vehicle("porsche", 500.0, 200.0);
+        Car carOne = new Car(200.00, 500.00, "RacerOne");
 
-
-        System.out.println(vehicleOne.getName());
-        System.out.println(vehicleOne.getDistanceTraveled());
-        System.out.println(vehicleOne.getMoveForAnHour());
+        System.out.println(carOne.getName());
+        System.out.println(carOne.getDistanceTraveled());
+        System.out.println(carOne.getMoveForAnHour());
 
     }
 }
