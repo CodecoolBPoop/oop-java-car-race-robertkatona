@@ -29,24 +29,18 @@ public class Race {
         for (Vehicle eachVehicle : vehiclesInTheRace) {
             eachVehicle.setPosition(finalResult);
             if (finalResult < 4) {
-            System.out.println(
+                System.out.println(
 
-                    "Position: " + eachVehicle.getPosition() +
-                            " || Name: " + eachVehicle.getName() +
-                            " || current speed: " + eachVehicle.getSpeed() + " km/h" +
-                            " || average speed: " + Math.round(eachVehicle.getAvgSpeed()) + " km/h" +
-                            " || hour(s) in the race: " + eachVehicle.getMoveForAnHour() +
-                            " || distance traveled in km: " + eachVehicle.getDistanceTraveled());
+                        "Position: " + eachVehicle.getPosition() +
+                                " || Name: " + eachVehicle.getName() +
+                                " || current speed: " + eachVehicle.getSpeed() + " km/h" +
+                                " || average speed: " + Math.round(eachVehicle.getAvgSpeed()) + " km/h" +
+                                " || hour(s) in the race: " + eachVehicle.getMoveForAnHour() +
+                                " || distance traveled in km: " + eachVehicle.getDistanceTraveled());
 
-            } finalResult += 1;
+            }
+            finalResult += 1;
         }
-    }
-
-    public static List getTheResult(List<Vehicle> listOfVehiclesInTheRace) {
-        List<Vehicle> resultOrder = new ArrayList<Vehicle>();
-        listOfVehiclesInTheRace.sort(Comparator.comparingDouble(Vehicle::getDistanceTraveled).reversed());
-        resultOrder = listOfVehiclesInTheRace;
-        return resultOrder;
     }
 
     public static List createVehicles(int numberOfVehicles) {
