@@ -44,8 +44,7 @@ public class Race {
         System.out.println();
         System.out.println("Finish");
     }
-
-
+  
     public static List getTheResult(List<Car> listOfCarsInTheRace) {
         List<Car> resultOrder = new ArrayList<Car>();
         listOfCarsInTheRace.sort(Comparator.comparingDouble(Vehicle::getDistanceTraveled).reversed());
