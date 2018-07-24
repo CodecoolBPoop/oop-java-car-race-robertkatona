@@ -1,15 +1,15 @@
 package com.codecool;
 
-public class Truck extends Vehicle{
+public class Truck extends Vehicle {
 
-    private String name;
+    private int speed;
+    private int position;
 
-    public Truck(double distanceTraveled, double moveForAnHour, String name) {
-        super(distanceTraveled, moveForAnHour);
-        this.name = name;
+    public Truck(String name) {
+        super(name);
+        this.speed = 100;
+        this.position = 0;
     }
 
-    public String getName() {
-        return name;
-    }
+
 }
