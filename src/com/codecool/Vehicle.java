@@ -2,8 +2,8 @@ package com.codecool;
 
 public class Vehicle {
 
-    private double distanceTraveled;
-    private double moveForAnHour;
+    public double distanceTraveled;
+    public double moveForAnHour;
 
     public Vehicle(double distanceTraveled, double moveForAnHour) {
         this.distanceTraveled = distanceTraveled;
@@ -14,7 +14,15 @@ public class Vehicle {
         return distanceTraveled;
     }
 
+    public void setDistanceTraveled(double distanceTraveled) {
+        this.distanceTraveled += distanceTraveled;
+    }
+
     public double getMoveForAnHour() {
         return moveForAnHour;
+    }
+
+    public void setMoveForAnHour(double moveForAnHour) {
+        this.moveForAnHour += moveForAnHour;
     }
 }
