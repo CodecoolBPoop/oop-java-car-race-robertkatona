@@ -8,75 +8,97 @@ import java.util.Random;
 public class Race {
 
     public static void main(String[] args) {
-        int hoursOfTheRace = 10;
-        int numberOfCars = 10;
-        race(hoursOfTheRace, numberOfCars);
+        int hoursOfTheRace = 50;
+        int numberOfVehicles = 10;
+        simulateRace(hoursOfTheRace, numberOfVehicles);
     }
 
-    public static void race(int hoursOfTheRace, int numberOfCars) {
-        List<Car> carsInTheRace = createCars(numberOfCars);
+    public static void simulateRace(int hoursOfTheRace, int numberOfVehicles) {
+        List<Vehicle> vehiclesInTheRace = createVehicles(numberOfVehicles);
 
-        System.out.println("Start");
+        System.out.println("START");
         System.out.println();
-        for (Car eachCar : carsInTheRace) {
+        System.out.println("The race will take " + hoursOfTheRace + " hour(s).");
+        System.out.println();
+
+        moveForRandomHoursTheRace(hoursOfTheRace, vehiclesInTheRace);
+        vehiclesInTheRace = getTheResult(vehiclesInTheRace);
+        System.out.println("FINISH:");
+        System.out.println();
+        int finalResult = 1;
+        for (Vehicle eachVehicle : vehiclesInTheRace) {
+            eachVehicle.setPosition(finalResult);
+            if (finalResult < 4) {
             System.out.println(
-                    "Position: " + eachCar.getPosition() +
-                            "Name: " + eachCar.getName() +
-                            " || speed: " + eachCar.getSpeed() +
-                            " || hour(s) in race: " + eachCar.getMoveForAnHour() +
-                            " || distance traveled: " + eachCar.getDistanceTraveled());
+
+                    "Position: " + eachVehicle.getPosition() +
+                            " || Name: " + eachVehicle.getName() +
+                            " || current speed: " + eachVehicle.getSpeed() + " km/h" +
+                            " || average speed: " + Math.round(eachVehicle.getAvgSpeed()) + " km/h" +
+                            " || hour(s) in the race: " + eachVehicle.getMoveForAnHour() +
+                            " || distance traveled in km: " + eachVehicle.getDistanceTraveled());
+
+            } finalResult += 1;
         }
-        System.out.println();
-        moveForRandomHoursTheRace(hoursOfTheRace, carsInTheRace);
-        carsInTheRace = getTheResult(carsInTheRace);
-        int finalResult = 0;
-        for (Car eachCar : carsInTheRace) {
-            if (finalResult < 3) {
-                System.out.println(
-                                "Name: " + eachCar.getName() +
-                                " || current speed: " + eachCar.getSpeed() +
-                                " || average speed: " + eachCar.getAvgSpeed() +
-                                " || hour(s) in the race: " + eachCar.getMoveForAnHour() +
-                                " || distance traveled: " + eachCar.getDistanceTraveled());
-            }
-            finalResult += 1;
-        }
-        System.out.println();
-        System.out.println("Finish");
-    }
-  
-    public static List getTheResult(List<Car> listOfCarsInTheRace) {
-        List<Car> resultOrder = new ArrayList<Car>();
-        listOfCarsInTheRace.sort(Comparator.comparingDouble(Vehicle::getDistanceTraveled).reversed());
-        resultOrder = listOfCarsInTheRace;
-        return resultOrder;
     }
 
-    public static List createCars(int numberOfCars) {
-        List<Car> createdCars = new ArrayList<>();
+    public static List createVehicles(int numberOfVehicles) {
+        List<Car> createdCars = new ArrayList<Car>();
+        List<Motorcycle> createdMotorcycles = new ArrayList<Motorcycle>();
+        List<Truck> createdTrucks = new ArrayList<Truck>();
+
         int carsNumber = 1;
-        for (int i = 0; i < numberOfCars; i++) {
+        for (int i = 0; i < numberOfVehicles; i++) {
             String carName = carsNumber + "_CAR";
             Car car = new Car(carName);
             carsNumber += 1;
             createdCars.add(car);
         }
-        return createdCars;
+
+        int motorsNumber = 1;
+        for (int i = 0; i < numberOfVehicles; i++) {
+            String motorName = motorsNumber + "_MOTOR";
+            Motorcycle motorcycle = new Motorcycle(motorName);
+            motorsNumber += 1;
+            createdMotorcycles.add(motorcycle);
+        }
+
+        int trucksNumber = 1;
+        for (int i = 0; i < numberOfVehicles; i++) {
+            String truckName = trucksNumber + "_TRUCK";
+            Truck truck = new Truck(truckName);
+            trucksNumber += 1;
+            createdTrucks.add(truck);
+        }
+//        List<Vehicle> createdVehicles = new ArrayList<>(createdCars);
+        List<Vehicle> createdVehicles = new ArrayList<>();
+
+        createdVehicles.addAll(createdCars);
+        createdVehicles.addAll(createdMotorcycles);
+        createdVehicles.addAll(createdTrucks);
+
+        return createdVehicles;
     }
 
-    public static List moveForRandomHoursTheRace(int hoursOfTheRace, List<Car> listOfCarsInTheRace) {
-        System.out.println("The race will take " + hoursOfTheRace + " hour(s).");
-        System.out.println();
+    public static List getTheResult(List<Vehicle> listOfVehiclesInTheRace) {
+        List<Vehicle> resultOrder = new ArrayList<Vehicle>();
+        listOfVehiclesInTheRace.sort(Comparator.comparingDouble(Vehicle::getDistanceTraveled).reversed());
+        resultOrder = listOfVehiclesInTheRace;
+        return resultOrder;
+    }
+
+
+    public static List moveForRandomHoursTheRace(int hoursOfTheRace, List<Vehicle> listOfVehiclesInTheRace) {
         for (int i = 0; i < hoursOfTheRace; i++) {
-            for (Car eachCar : listOfCarsInTheRace) {
+            for (Vehicle eachVehicle : listOfVehiclesInTheRace) {
                 int currentSpeed = randomSpeed();
-                eachCar.setSpeed(currentSpeed);
-                eachCar.setAvgSpeed(currentSpeed);
-                eachCar.setDistanceTraveled(currentSpeed);
-                eachCar.setMoveForAnHour(1);
+                eachVehicle.setSpeed(currentSpeed);
+                eachVehicle.setAvgSpeed(currentSpeed);
+                eachVehicle.setDistanceTraveled(currentSpeed);
+                eachVehicle.setMoveForAnHour(1);
             }
         }
-        return listOfCarsInTheRace;
+        return listOfVehiclesInTheRace;
     }
 
     public static int randomSpeed() {
