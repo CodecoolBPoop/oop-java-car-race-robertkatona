@@ -20,8 +20,8 @@ public class Race {
         System.out.println();
         for (Car eachCar : carsInTheRace) {
             System.out.println(
-                    "Position: " + eachCar.getPosition() +
-                            "Name: " + eachCar.getName() +
+                    "position: " + eachCar.getPosition() +
+                            " || name: " + eachCar.getName() +
                             " || speed: " + eachCar.getSpeed() +
                             " || hour(s) in race: " + eachCar.getMoveForAnHour() +
                             " || distance traveled: " + eachCar.getDistanceTraveled());
@@ -29,11 +29,13 @@ public class Race {
         System.out.println();
         moveForRandomHoursTheRace(hoursOfTheRace, carsInTheRace);
         carsInTheRace = getTheResult(carsInTheRace);
-        int finalResult = 0;
+        int finalResult = 1;
         for (Car eachCar : carsInTheRace) {
-            if (finalResult < 3) {
+            eachCar.setPosition(finalResult);
+            if (finalResult < 4) {
                 System.out.println(
-                                "Name: " + eachCar.getName() +
+                        "position: " + eachCar.getPosition() +
+                                " || name: " + eachCar.getName() +
                                 " || current speed: " + eachCar.getSpeed() +
                                 " || average speed: " + eachCar.getAvgSpeed() +
                                 " || hour(s) in the race: " + eachCar.getMoveForAnHour() +
@@ -44,7 +46,7 @@ public class Race {
         System.out.println();
         System.out.println("Finish");
     }
-  
+
     public static List getTheResult(List<Car> listOfCarsInTheRace) {
         List<Car> resultOrder = new ArrayList<Car>();
         listOfCarsInTheRace.sort(Comparator.comparingDouble(Vehicle::getDistanceTraveled).reversed());
