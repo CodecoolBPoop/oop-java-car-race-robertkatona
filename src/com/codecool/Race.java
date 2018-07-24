@@ -42,6 +42,13 @@ public class Race {
         }
     }
 
+    public static List getTheResult(List<Vehicle> listOfVehiclesInTheRace) {
+        List<Vehicle> resultOrder = new ArrayList<Vehicle>();
+        listOfVehiclesInTheRace.sort(Comparator.comparingDouble(Vehicle::getDistanceTraveled).reversed());
+        resultOrder = listOfVehiclesInTheRace;
+        return resultOrder;
+    }
+
     public static List createVehicles(int numberOfVehicles) {
         List<Car> createdCars = new ArrayList<Car>();
         List<Motorcycle> createdMotorcycles = new ArrayList<Motorcycle>();
