@@ -6,17 +6,19 @@ public class Vehicle {
     private int position;
     private int speed;
     private double avgSpeed;
+    private String type;
 
     public double distanceTraveled;
     public double moveForAnHour;
 
-    public Vehicle(String name) {
+    public Vehicle(String name, String type) {
         this.name = name;
         this.position = 0;
         this.speed = 0;
         this.avgSpeed = 0;
         this.distanceTraveled = 0;
         this.moveForAnHour = 0;
+        this.type = type;
     }
 
     public double getDistanceTraveled() {
@@ -68,5 +70,7 @@ public class Vehicle {
         this.avgSpeed += avgSpeed;
     }
 
-
+    public String getType() {
+        return type;
+    }
 }

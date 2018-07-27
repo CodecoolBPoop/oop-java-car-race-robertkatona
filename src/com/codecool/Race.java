@@ -8,8 +8,9 @@ import java.util.Random;
 public class Race {
 
     public static void main(String[] args) {
-        int hoursOfTheRace = 50;
-        int numberOfVehicles = 10;
+        Weather weather = new Weather();
+        int hoursOfTheRace = 10;
+        int numberOfVehicles = 3;
         simulateRace(hoursOfTheRace, numberOfVehicles);
     }
 
@@ -51,7 +52,7 @@ public class Race {
         int carsNumber = 1;
         for (int i = 0; i < numberOfVehicles; i++) {
             String carName = carsNumber + "_CAR";
-            Car car = new Car(carName);
+            Car car = new Car(carName, "CAR");
             carsNumber += 1;
             createdCars.add(car);
         }
@@ -59,7 +60,7 @@ public class Race {
         int motorsNumber = 1;
         for (int i = 0; i < numberOfVehicles; i++) {
             String motorName = motorsNumber + "_MOTOR";
-            Motorcycle motorcycle = new Motorcycle(motorName);
+            Motorcycle motorcycle = new Motorcycle(motorName, "MOTOR");
             motorsNumber += 1;
             createdMotorcycles.add(motorcycle);
         }
@@ -67,7 +68,7 @@ public class Race {
         int trucksNumber = 1;
         for (int i = 0; i < numberOfVehicles; i++) {
             String truckName = trucksNumber + "_TRUCK";
-            Truck truck = new Truck(truckName);
+            Truck truck = new Truck(truckName, "TRUCK");
             trucksNumber += 1;
             createdTrucks.add(truck);
         }
@@ -91,7 +92,25 @@ public class Race {
 
     public static List moveForRandomHoursTheRace(int hoursOfTheRace, List<Vehicle> listOfVehiclesInTheRace) {
         for (int i = 0; i < hoursOfTheRace; i++) {
+            Weather weather = new Weather();
+            boolean rain = weather.setRaining();
+            System.out.println("Hour: " + (i + 1));
             for (Vehicle eachVehicle : listOfVehiclesInTheRace) {
+                if (eachVehicle.getType() == "MOTOR") {
+                    if (rain && eachVehicle.getType() == "MOTOR") {
+                        System.out.println("It Rains and Motor");
+                        int normalSpeed = randomSpeed();
+                        int rainSpeed = slowerRandomSpeed();
+                        int currentSpeed = normalSpeed - rainSpeed;
+                        System.out.println(currentSpeed + "km/h");
+                        eachVehicle.setSpeed(currentSpeed);
+                        eachVehicle.setAvgSpeed(currentSpeed);
+                        eachVehicle.setDistanceTraveled(currentSpeed);
+                        eachVehicle.setMoveForAnHour(1);
+                        continue;
+                    }
+                }
+                System.out.println(eachVehicle.getType());
                 int currentSpeed = randomSpeed();
                 eachVehicle.setSpeed(currentSpeed);
                 eachVehicle.setAvgSpeed(currentSpeed);
@@ -106,6 +125,12 @@ public class Race {
         Random random = new Random();
         int randomSpeed = random.nextInt(30) + 80;
         return randomSpeed;
+    }
+
+    public static int slowerRandomSpeed() {
+        Random random = new Random();
+        int slowerRandomSpeed = random.nextInt(45) + 5;
+        return slowerRandomSpeed;
     }
 
 }
