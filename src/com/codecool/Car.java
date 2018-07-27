@@ -8,8 +8,8 @@ public class Car extends Vehicle {
     private int position;
 
 
-    public Car(String name) {
-        super(name);
+    public Car(String name, String type) {
+        super(name, type);
         this.speed = speedBetween80And110();
         this.position = 0;
     }
