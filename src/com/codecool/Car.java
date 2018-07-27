@@ -1,15 +1,23 @@
 package com.codecool;
 
-public class Car extends Vehicle{
+import java.util.Random;
 
-    private String name;
+public class Car extends Vehicle {
 
-    public Car(double distanceTraveled, double moveForAnHour, String name) {
-        super(distanceTraveled, moveForAnHour);
-        this.name = name;
+    private int speed;
+    private int position;
+
+
+    public Car(String name, String type) {
+        super(name, type);
+        this.speed = speedBetween80And110();
+        this.position = 0;
     }
 
-    public String getName() {
-        return name;
+    private int speedBetween80And110(){
+        Random random = new Random();
+        int randomSpeed = random.nextInt(30) + 80;
+        return randomSpeed;
     }
+
 }

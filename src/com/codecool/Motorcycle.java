@@ -2,14 +2,14 @@ package com.codecool;
 
 public class Motorcycle extends Vehicle {
 
-    private String name;
+    private int speed;
+    private int position;
 
-    public Motorcycle(double distanceTraveled, double moveForAnHour, String name) {
-        super(distanceTraveled, moveForAnHour);
-        this.name = name;
+    public Motorcycle(String name, String type) {
+        super(name, type);
+        this.speed = 100;
+        this.position = 0;
     }
 
-    public String getName() {
-        return name;
-    }
+
 }
