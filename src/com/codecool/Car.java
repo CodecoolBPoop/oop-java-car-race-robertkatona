@@ -1,5 +1,7 @@
 package com.codecool;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Car extends Vehicle {
@@ -10,14 +12,13 @@ public class Car extends Vehicle {
 
     public Car(String name, String type) {
         super(name, type);
-        this.speed = speedBetween80And110();
+        this.speed = speed;
         this.position = 0;
     }
 
-    private int speedBetween80And110(){
-        Random random = new Random();
-        int randomSpeed = random.nextInt(30) + 80;
-        return randomSpeed;
-    }
+
 
 }
+
+
+//List<String> carNames = new ArrayList<String>("Instinct", "Ranger", "Blitz", "Motion", "Sanctuary", "Pinnacle", "Aeon", "Nimbus", "Lioness", "Blaze");
