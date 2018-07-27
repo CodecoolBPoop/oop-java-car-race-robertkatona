@@ -9,7 +9,7 @@ public class Race {
 
     public static void main(String[] args) {
         Weather weather = new Weather();
-        int hoursOfTheRace = 10;
+        int hoursOfTheRace = 1;
         int numberOfVehicles = 3;
         simulateRace(hoursOfTheRace, numberOfVehicles);
     }
@@ -29,7 +29,7 @@ public class Race {
         int finalResult = 1;
         for (Vehicle eachVehicle : vehiclesInTheRace) {
             eachVehicle.setPosition(finalResult);
-            if (finalResult < 4) {
+            if (finalResult < 31) {
                 System.out.println(
 
                         "Position: " + eachVehicle.getPosition() +
@@ -94,15 +94,12 @@ public class Race {
         for (int i = 0; i < hoursOfTheRace; i++) {
             Weather weather = new Weather();
             boolean rain = weather.setRaining();
-            System.out.println("Hour: " + (i + 1));
             for (Vehicle eachVehicle : listOfVehiclesInTheRace) {
                 if (eachVehicle.getType() == "MOTOR") {
                     if (rain && eachVehicle.getType() == "MOTOR") {
-                        System.out.println("It Rains and Motor");
                         int normalSpeed = randomSpeed();
                         int rainSpeed = slowerRandomSpeed();
                         int currentSpeed = normalSpeed - rainSpeed;
-                        System.out.println(currentSpeed + "km/h");
                         eachVehicle.setSpeed(currentSpeed);
                         eachVehicle.setAvgSpeed(currentSpeed);
                         eachVehicle.setDistanceTraveled(currentSpeed);
@@ -110,7 +107,6 @@ public class Race {
                         continue;
                     }
                 }
-                System.out.println(eachVehicle.getType());
                 int currentSpeed = randomSpeed();
                 eachVehicle.setSpeed(currentSpeed);
                 eachVehicle.setAvgSpeed(currentSpeed);
