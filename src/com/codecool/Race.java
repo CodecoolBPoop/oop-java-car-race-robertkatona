@@ -8,40 +8,20 @@ import java.util.Random;
 public class Race {
 
     public static void main(String[] args) {
-        Weather weather = new Weather();
-        int hoursOfTheRace = 1;
+        int hoursOfTheRace = 3;
         int numberOfVehicles = 3;
+        System.out.println("START");
+        System.out.println();
+        System.out.println("The race will take " + hoursOfTheRace + " hour(s).");
+        System.out.println();
         simulateRace(hoursOfTheRace, numberOfVehicles);
     }
 
     public static void simulateRace(int hoursOfTheRace, int numberOfVehicles) {
         List<Vehicle> vehiclesInTheRace = createVehicles(numberOfVehicles);
-
-        System.out.println("START");
-        System.out.println();
-        System.out.println("The race will take " + hoursOfTheRace + " hour(s).");
-        System.out.println();
-
         moveForRandomHoursTheRace(hoursOfTheRace, vehiclesInTheRace);
         vehiclesInTheRace = getTheResult(vehiclesInTheRace);
-        System.out.println("FINISH:");
-        System.out.println();
-        int finalResult = 1;
-        for (Vehicle eachVehicle : vehiclesInTheRace) {
-            eachVehicle.setPosition(finalResult);
-            if (finalResult < 31) {
-                System.out.println(
-
-                        "Position: " + eachVehicle.getPosition() +
-                                " || Name: " + eachVehicle.getName() +
-                                " || current speed: " + eachVehicle.getSpeed() + " km/h" +
-                                " || average speed: " + Math.round(eachVehicle.getAvgSpeed()) + " km/h" +
-                                " || hour(s) in the race: " + eachVehicle.getMoveForAnHour() +
-                                " || distance traveled in km: " + eachVehicle.getDistanceTraveled());
-
-            }
-            finalResult += 1;
-        }
+        printRaceResults(vehiclesInTheRace);
     }
 
     public static List createVehicles(int numberOfVehicles) {
@@ -115,6 +95,27 @@ public class Race {
             }
         }
         return listOfVehiclesInTheRace;
+    }
+
+    public static void printRaceResults(List<Vehicle> listOfVehiclesInTheRace){
+        System.out.println("FINISH:");
+        System.out.println();
+        int finalResult = 1;
+        for (Vehicle eachVehicle : listOfVehiclesInTheRace) {
+            eachVehicle.setPosition(finalResult);
+            if (finalResult < 31) {
+                System.out.println(
+
+                        "Position: " + eachVehicle.getPosition() +
+                                " || Name: " + eachVehicle.getName() +
+                                " || current speed: " + eachVehicle.getSpeed() + " km/h" +
+                                " || average speed: " + Math.round(eachVehicle.getAvgSpeed()) + " km/h" +
+                                " || hour(s) in the race: " + eachVehicle.getMoveForAnHour() +
+                                " || distance traveled in km: " + eachVehicle.getDistanceTraveled());
+
+            }
+            finalResult += 1;
+        }
     }
 
     public static int randomSpeed() {
