@@ -11,5 +11,16 @@ public class Motorcycle extends Vehicle {
         this.position = 0;
     }
 
-
+    @Override
+    public void setSpeed(int speed) {
+        int maximumSpeed = 100;
+        if (speed <= maximumSpeed) {
+            super.setSpeed(speed);
+        } else {
+            int differenceSpeed;
+            differenceSpeed = speed - maximumSpeed;
+            speed = speed - differenceSpeed;
+            super.setSpeed(speed);
+        }
+    }
 }

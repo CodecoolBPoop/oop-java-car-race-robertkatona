@@ -3,13 +3,29 @@ package com.codecool;
 public class Vehicle {
 
     private String name;
+    private int numName;
     private int position;
     private int speed;
     private double avgSpeed;
     private String type;
 
-    public double distanceTraveled;
-    public double moveForAnHour;
+    private double distanceTraveled;
+    private double moveForAnHour;
+
+    private int brokenHoursOK;
+    private int breakdownTurnsLeft;
+
+    public Vehicle(int numName, String type) {
+        this.numName = numName;
+        this.position = 0;
+        this.speed = 0;
+        this.avgSpeed = 0;
+        this.distanceTraveled = 0;
+        this.moveForAnHour = 0;
+        this.type = type;
+        this.brokenHoursOK = 0;
+        this.breakdownTurnsLeft = 0;
+    }
 
     public Vehicle(String name, String type) {
         this.name = name;
@@ -19,6 +35,8 @@ public class Vehicle {
         this.distanceTraveled = 0;
         this.moveForAnHour = 0;
         this.type = type;
+        this.brokenHoursOK = 0;
+        this.breakdownTurnsLeft = 0;
     }
 
     public double getDistanceTraveled() {
@@ -41,8 +59,8 @@ public class Vehicle {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getNumName() {
+        return numName;
     }
 
     public int getPosition() {
@@ -72,5 +90,21 @@ public class Vehicle {
 
     public String getType() {
         return type;
+    }
+
+    public int getBrokenHoursOK() {
+        return brokenHoursOK;
+    }
+
+    public void setBrokenHoursOK(int brokenHoursOK) {
+        this.brokenHoursOK = brokenHoursOK;
+    }
+
+    public int getBreakdownTurnsLeft() {
+        return breakdownTurnsLeft;
+    }
+
+    public void setBreakdownTurnsLeft(int breakdownTurnsLeft) {
+        this.breakdownTurnsLeft = breakdownTurnsLeft;
     }
 }
